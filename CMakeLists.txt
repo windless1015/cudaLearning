@@ -1,0 +1,40 @@
+cmake_minimum_required(VERSION 3.16)
+
+if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+  set(CMAKE_CUDA_ARCHITECTURES 75)
+endif()
+
+project(CUDALearning
+        LANGUAGES CXX C
+        VERSION 0.0.0.0)
+set(LIBRARY_TARGET_NAME ${PROJECT_NAME})
+enable_language(CUDA)
+
+find_package(CUDA)
+include_directories(${CUDA_INCLUDE_DIRS})
+
+set(${LIBRARY_TARGET_NAME}_SRC
+    src/testCudaAvailability.cpp
+)
+
+set(${LIBRARY_TARGET_NAME}_HDR
+)
+
+add_executable(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TARGET_NAME}_HDR})
+
+set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION       ${${PROJECT_NAME}_VERSION}
+	PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}"
+)
+
+target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC 
+    #${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+TARGET_LINK_LIBRARIES(${LIBRARY_TARGET_NAME}
+    ${CUDA_CUDA_LIBRARY}
+    ${CUDA_LIBRARIES}
+    ${CUDA_CUBLAS_LIBRARIES}
+    ${CUDA_nppig_LIBRARY}
+)
+
+message(STATUS "${CMAKE_SOURCE_DIR}/src/")
