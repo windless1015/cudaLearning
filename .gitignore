@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,visualstudio,windows,cuda
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,visualstudio,windows,cuda
 
+build
+
 ### C++ ###
 # Prerequisites
 *.d
