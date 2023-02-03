@@ -5,3 +5,4 @@ set(CMAKE_CUDA_ARCHITECTURES 53)
 
 add_subdirectory(src/testCudaAvailability)
 add_subdirectory(src/cudaResize)
+add_subdirectory(src/cudaITKTest)
